@@ -32,12 +32,15 @@ This repository is pre-configured with a GitHub Actions workflow (`.github/workf
 ## Local Development
 
 ```bash
-# Install dependencies
-npm install
+# Install dependencies (using Bun or npm)
+bun install
+# or: npm install
 
 # Run development server
-npm run dev
+bun run dev
+# or: npm run dev
 
 # Build client for GitHub Pages
-npm run build:client
+bun run build:client
+# or: npm run build:client
 ```
