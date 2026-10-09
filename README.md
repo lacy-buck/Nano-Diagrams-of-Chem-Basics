@@ -13,8 +13,6 @@ Hosted on GitHub Pages at: `https://<your-username>.github.io/Nano-Diagrams-of-C
 - **States of Matter Simulator**: Interactive temperature and pressure controls observing changes in density, particle proximity, and thermal kinetic energy.
 - **Chemistry Concept Guide & Cheat Sheet**: Interactive visual reference breaking down particle rules side-by-side.
 - **Achievement Badges & Streaks**: Progress tracking with milestone unlocks and continuous streak counters saved locally in the browser.
-- **Chemistry Coach (Dr. Atom)**: Client-side interactive chemistry tutor answering particle classification questions without any external API keys or server requirements.
-- **Export Source Code (.docx)**: Generate and download the full source code and documentation as a Microsoft Word `.docx` file directly in the browser.
 
 ---
 

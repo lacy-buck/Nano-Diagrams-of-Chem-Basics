@@ -7,27 +7,22 @@ import { StatesOfMatterLab } from './components/StatesOfMatterLab';
 import { AdvancedChallengeLab } from './components/AdvancedChallengeLab';
 import { ParticleCheatSheet } from './components/ParticleCheatSheet';
 import { BadgesDrawer } from './components/BadgesDrawer';
-import { AiTutorModal } from './components/AiTutorModal';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Gamepad2,
   Thermometer,
   BookOpen,
   Award,
-  Bot,
   Sparkles,
   Zap,
   CheckCircle2,
   Trophy,
-  Atom,
-  FileText,
-  Download
+  Atom
 } from 'lucide-react';
-import { generateAndDownloadWordDoc } from './lib/exportDocx';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<
-    'levels' | 'challenge' | 'states' | 'guide' | 'badges' | 'tutor'
+    'levels' | 'challenge' | 'states' | 'guide' | 'badges'
   >('levels');
 
   const [selectedLevelId, setSelectedLevelId] = useState<number | null>(1);
@@ -63,7 +58,6 @@ export default function App() {
 
   const [userStreak, setUserStreak] = useState<number>(userProgress.currentStreak);
   const [newlyUnlockedBadge, setNewlyUnlockedBadge] = useState<Badge | null>(null);
-  const [isExportingDocx, setIsExportingDocx] = useState(false);
 
   // Sync progress to localStorage
   useEffect(() => {
@@ -193,26 +187,6 @@ export default function App() {
 
           {/* User Score & Badges Quick Bar */}
           <div className="flex items-center gap-3">
-            <button
-              onClick={async () => {
-                try {
-                  setIsExportingDocx(true);
-                  await generateAndDownloadWordDoc();
-                } catch (e) {
-                  console.error(e);
-                } finally {
-                  setIsExportingDocx(false);
-                }
-              }}
-              disabled={isExportingDocx}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-cyan-950/60 border border-cyan-800/60 hover:bg-cyan-900/60 text-cyan-300 text-xs font-bold transition-all cursor-pointer shadow-sm active:scale-95 disabled:opacity-50"
-              title="Download Complete Source Code in Microsoft Word (.docx) Format"
-            >
-              <FileText className="w-4 h-4 text-cyan-400" />
-              <span className="hidden sm:inline">{isExportingDocx ? 'Generating Word Doc...' : 'Export Code (.docx)'}</span>
-              <Download className="w-3.5 h-3.5 opacity-80" />
-            </button>
-
             <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs font-semibold">
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span className="text-slate-300">{userProgress.totalScore} XP</span>
@@ -285,18 +259,6 @@ export default function App() {
           >
             <Award className="w-4 h-4" />
             <span>Badges ({badges.filter((b) => b.unlocked).length}/{badges.length})</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('tutor')}
-            className={`flex items-center gap-2 px-4 py-3 text-xs font-bold transition-all border-b-2 cursor-pointer whitespace-nowrap ${
-              activeTab === 'tutor'
-                ? 'border-cyan-400 text-cyan-400 bg-cyan-950/20'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Bot className="w-4 h-4 text-cyan-400" />
-            <span>Ask Dr. Atom</span>
           </button>
         </div>
       </header>
@@ -387,8 +349,6 @@ export default function App() {
         {activeTab === 'guide' && <ParticleCheatSheet />}
 
         {activeTab === 'badges' && <BadgesDrawer badges={badges} progress={userProgress} />}
-
-        {activeTab === 'tutor' && <AiTutorModal />}
       </main>
 
       {/* Footer */}
