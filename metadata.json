@@ -1,0 +1,6 @@
+{
+  "name": "Particle Chemistry Lab",
+  "description": "Interactive particle diagram learning environment and drag-and-drop gamified challenge levels for high school chemistry students.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
